@@ -19,7 +19,7 @@ class NewsRepository(){
 
     suspend fun getAllNewsArticles(){
         withContext(Dispatchers.IO){
-            val newsArticles = NewsAPI.retrofitService.getAllNewsArticles("en","3877316476634f27978c2de413483b12")
+            val newsArticles = NewsAPI.retrofitService.getAllNewsArticles("en","")
             everythingResponse.postValue(newsArticles)
         }
     }
