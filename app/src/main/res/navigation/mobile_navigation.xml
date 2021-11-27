@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.wilies.juza.ui.headlines.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_headlines" />
+    <fragment
+        android:id="@+id/navigation_technology"
+        android:name="com.wilies.juza.ui.technology.FragmentTechnology"
+        android:label="@string/title_technology"
+        tools:layout="@layout/fragment_technology" />
+
+</navigation>
