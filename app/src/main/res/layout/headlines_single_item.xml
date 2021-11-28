@@ -5,70 +5,83 @@
 
     <data>
         <variable
+            name="clickListener"
+            type="com.wilies.juza.interactions.ArticleCardClickListener" />
+        <variable
             name="article"
             type="com.wilies.juza.domain.Article" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp">
 
-        <TextView
-            android:id="@+id/headline_source"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.7"
-            app:text="@{article.source}"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+       <androidx.constraintlayout.widget.ConstraintLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:paddingTop="16dp"
+           android:paddingBottom="16dp"
+           android:onClick="@{() -> clickListener.onArticleClicked(article)}">
 
-        <TextView
-            android:id="@+id/headline_title"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="16dp"
-            android:text="@{article.articleTitle}"
-            android:textStyle="bold"
-            app:layout_constraintDimensionRatio=""
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headline_source" />
+           <TextView
+               android:id="@+id/headline_source"
+               style="@style/TextAppearance.MaterialComponents.Subtitle1"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:alpha="0.7"
+               android:fontFamily="@font/rubik"
+               android:textColor="@color/primary"
+               android:textStyle="bold"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:text="@{article.source}" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+           <TextView
+               android:id="@+id/headline_title"
+               style="@style/TextAppearance.MaterialComponents.Headline6"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:ellipsize="end"
+               android:fontFamily="@font/rubik_bold"
+               android:maxLines="3"
+               android:paddingTop="16dp"
+               android:paddingEnd="16dp"
+               android:paddingBottom="16dp"
+               android:text="@{article.articleTitle}"
+               android:textSize="18dp"
+               android:textStyle="bold"
+               app:layout_constraintDimensionRatio=""
+               app:layout_constraintEnd_toStartOf="@+id/imageView"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/headline_source"
+               app:lineHeight="26sp"
+               tools:text="If your project is being used in production, please upgrade to a paid plan." />
 
-            <ImageView
-                android:id="@+id/headlines_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:setNewsImage="@{article.articleImage}"
-                tools:srcCompat="@tools:sample/avatars" />
-        </com.google.android.material.card.MaterialCardView>
+           <com.google.android.material.card.MaterialCardView
+               android:id="@+id/imageView"
+               android:layout_width="100dp"
+               android:layout_height="100dp"
+               app:cardCornerRadius="8dp"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/time_since_published"
-            style="@style/TextAppearance.MaterialComponents.Subtitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.5"
-            android:text="12 hours ago"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headline_title" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+               <ImageView
+                   android:id="@+id/headlines_image"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:scaleType="centerCrop"
+                   app:setNewsImage="@{article.articleImage}"
+                   tools:srcCompat="@tools:sample/avatars" />
+           </com.google.android.material.card.MaterialCardView>
+
+           <TextView
+               android:id="@+id/time_since_published"
+               style="@style/TextAppearance.MaterialComponents.Subtitle2"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:alpha="0.5"
+               android:fontFamily="@font/rubik_light"
+               android:text="12 hours ago"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/headline_title" />
+       </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

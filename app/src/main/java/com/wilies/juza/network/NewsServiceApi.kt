@@ -20,9 +20,17 @@ private val retrofit = Retrofit.Builder()
 interface NewsServiceApi {
     @GET("v2/top-headlines")
     suspend fun getAllNewsArticles(
-        @Query("language") query: String,
+        @Query("language") language: String,
+        @Query("category") category: String,
+        @Query("sources") sources: String,
         @Query("apiKey") apiKey: String
     ): EverythingNetworkContainerDTO
+
+    @GET("v2/top-headlines/sources")
+    suspend fun getTechSources(
+        @Query("category") query: String,
+        @Query("apiKey") apiKey: String
+    ): SourcesNetworkContainerDTO
 }
 
 

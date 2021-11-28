@@ -1,5 +1,7 @@
 package com.wilies.juza.ui.headlines
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,10 +11,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val job = Job()
     private val coroutineScope = CoroutineScope(job + Dispatchers.Main)
-    private val repository = NewsRepository()
+    private val repository = NewsRepository(application)
 
     init {
         coroutineScope.launch {
@@ -21,4 +23,11 @@ class HomeViewModel : ViewModel() {
     }
 
     val allNewsArticles = repository.allArticles
+    val loadingArticles = repository.loadingArticles
+
+    override fun onCleared() {
+        super.onCleared()
+        job?.cancel()
+    }
+
 }

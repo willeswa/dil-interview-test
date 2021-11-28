@@ -14,6 +14,34 @@
         android:id="@+id/navigation_technology"
         android:name="com.wilies.juza.ui.technology.FragmentTechnology"
         android:label="@string/title_technology"
-        tools:layout="@layout/fragment_technology" />
+        tools:layout="@layout/fragment_technology" >
+        <action
+            android:id="@+id/action_navigation_technology_to_fragmentSources"
+            app:destination="@id/navigation_tech_sources" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_tech_sources"
+        android:name="com.wilies.juza.ui.technology.FragmentSources"
+        android:label="@string/title_all_sources"
+        tools:layout="@layout/fragment_sources" >
+        <action
+            android:id="@+id/action_navigation_tech_sources_to_fragementArticlesBySource"
+            app:destination="@id/fragementArticlesBySource"
+            app:launchSingleTop="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragementArticlesBySource"
+        android:name="com.wilies.juza.ui.technology.FragmentArticlesBySource"
+        android:label="fragement_articles_by_source"
+        tools:layout="@layout/fragment_articles_by_source" >
+        <action
+            android:id="@+id/action_fragementArticlesBySource_to_navigation_tech_sources"
+            app:destination="@id/navigation_tech_sources"
+            app:popUpTo="@id/navigation_tech_sources" />
+        <argument
+            android:name="source_name"
+            app:argType="string" />
+
+    </fragment>
 
 </navigation>

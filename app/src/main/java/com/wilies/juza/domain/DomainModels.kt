@@ -6,4 +6,3 @@ data class Article(
     val articleUrl:String,
     val articleImage: String?,
     val publishedAt: String)
-

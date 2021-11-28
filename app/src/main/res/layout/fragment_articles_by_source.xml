@@ -7,40 +7,52 @@
         <import type="android.view.View"/>
         <variable
             name="viewmodel"
-            type="com.wilies.juza.ui.headlines.HomeViewModel" />
+            type="com.wilies.juza.ui.technology.TechnologyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.headlines.HomeFragment">
+        tools:context=".FragementArticlesBySource">
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/headline_recycler"
-            android:visibility="@{viewmodel.loadingArticles ? View.GONE : View.VISIBLE}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            app:submitNewsList="@{viewmodel.allNewsArticles}"
+            android:id="@+id/tech_source_recycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="@{viewmodel.loadingArticles &amp;&amp; viewmodel.techArticles.size > 0 ? View.GONE : View.VISIBLE}"
+            android:orientation="vertical"
             android:padding="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:submitNewsList="@{viewmodel.techArticles}"
             tools:listitem="@layout/headlines_single_item" />
 
         <ProgressBar
-            android:id="@+id/progressBar2"
-            android:visibility="@{viewmodel.loadingArticles ? View.VISIBLE : View.GONE}"
+            android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.loadingArticles ? View.VISIBLE : View.GONE}"
             android:indeterminateTint="@color/primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/textView"
+            style="@style/TextAppearance.MaterialComponents.Headline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewmodel.loadingArticles || !(viewmodel.techArticles.size == 0) ? View.GONE : View.VISIBLE}"
+            android:text="No articles available"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

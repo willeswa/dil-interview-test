@@ -12,9 +12,19 @@ data class EverythingNetworkContainerDTO(
 data class ArticleDTO(
     val source: SourceDTO,
     val title: String,
-    @Json(name = "url") val articleUrl:String,
+    @Json(name = "url") val articleUrl:String?,
     @Json(name ="urlToImage") val articleImage: String?,
     val publishedAt: String)
 
 @JsonClass(generateAdapter = true)
-data class SourceDTO(val name: String)
+data class SourceDTO(
+    val name: String,
+    val description: String?,
+    val url: String?)
+
+
+@JsonClass(generateAdapter = true)
+data class SourcesNetworkContainerDTO(
+    val status: String,
+    val sources: List<SourceDTO>
+)

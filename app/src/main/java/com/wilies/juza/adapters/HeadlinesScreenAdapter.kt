@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.wilies.juza.databinding.HeadlinesSingleItemBinding
 import com.wilies.juza.domain.Article
+import com.wilies.juza.interactions.ArticleCardClickListener
 
-class HeadlinesScreenAdapter: RecyclerView.Adapter<HeadlinesScreenAdapter.HeadlineViewHolder>() {
-    private var newsList: List<Article> = mutableListOf()
+class HeadlinesScreenAdapter(private val clickListener: ArticleCardClickListener):
+    RecyclerView.Adapter<HeadlinesScreenAdapter.HeadlineViewHolder>() {
+    private var newsList: List<Article> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeadlineViewHolder {
       return HeadlineViewHolder.from(parent)
@@ -15,7 +17,7 @@ class HeadlinesScreenAdapter: RecyclerView.Adapter<HeadlinesScreenAdapter.Headli
 
     override fun onBindViewHolder(holder: HeadlineViewHolder, position: Int) {
         val newsItem = newsList[position]
-        holder.bind(newsItem)
+        holder.bind(newsItem, clickListener)
     }
 
     override fun getItemCount() = newsList.size
@@ -26,7 +28,8 @@ class HeadlinesScreenAdapter: RecyclerView.Adapter<HeadlinesScreenAdapter.Headli
     }
 
     class HeadlineViewHolder(private val binding: HeadlinesSingleItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(newsItem: Article){
+        fun bind(newsItem: Article, clickListener: ArticleCardClickListener){
+            binding.clickListener = clickListener
             binding.article = newsItem
         }
 
